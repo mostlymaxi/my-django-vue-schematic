@@ -17,8 +17,8 @@ services:
     build: .
     volumes:
       - static:/static
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
+      - ./certbot/www:/var/www/certbot/
+      - ./certbot/conf/:/etc/nginx/ssl/
     depends_on:
       - server
     ports:
@@ -29,8 +29,8 @@ services:
   certbot:
     image: certbot/certbot:latest
     volumes:
-      - ./data/certbot/conf:/etc/letsencrypt
-      - ./data/certbot/www:/var/www/certbot
+      - ./certbot/www/:/var/www/certbot/
+      - ./certbot/conf/:/etc/letsencrypt/
     depends_on:
       - server
       - client-nginx
