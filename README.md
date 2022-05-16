@@ -24,3 +24,4 @@ In order to correctly deploy with a correct TLS certificate you must do the foll
 2. Run init-letsencrypt.sh to create dummy ssl keys
 3. docker-compose build and docker-compose up
 4. Ensure environment variables have been declared correctly
+5. Add automation to certbot to renew the certificates
