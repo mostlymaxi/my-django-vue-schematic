@@ -5,9 +5,9 @@ This repo is specifically designed to be able to build and deploy vue-django pro
 
 Simply clone the git repo and then run rm -rf .git to unlink from the repository.
 
-NOTE: Since this project was designed for personal use there are places that will require you to update the domain name:
-    - In default.conf -> server name, location /, and ssl certificates.
-    - In /server/server/settings.py -> ALLOWED_HOSTS, CORS_ALLOW_HEADERS
+NOTE - This project was designed for personal use, make sure to update these values:
+1. In default.conf -> server name, location /, and ssl certificates
+2. In /server/server/settings.py -> ALLOWED_HOSTS, CORS_ALLOW_HEADERS
  
 
 ### Testing
