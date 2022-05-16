@@ -1,4 +1,4 @@
-# My-Vue-Django-App
+# My Vue Django Schematic
 Deploying projects in a clean way is one of the most difficult tasks I have ever encountered as a developer... While I don't know how common vue-django stack apps are this may prove to be your life saver.
 
 This repo is specifically designed to be able to build and deploy vue-django projects as quickly and efficiently as possible through docker containers and many hours of painful tests to get https to work on the first deployment.
