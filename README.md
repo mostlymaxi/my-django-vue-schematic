@@ -10,12 +10,12 @@ NOTE - This project was designed for personal use, make sure to update these val
 2. In /server/server/settings.py -> ALLOWED_HOSTS, CORS_ALLOW_HEADERS
  
 
-### Testing
+## Testing
 1. Using a pipenv in the server directory run python manage.py runserver
 2. In the client directory run either vue serve or npm run serve
 
 
-### Deploying
+## Deploying
 1. Place any necessary environment variables into the .env file
 2. freeze python requirements into /server/requirements.txt
 
