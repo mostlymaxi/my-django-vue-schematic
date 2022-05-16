@@ -19,7 +19,7 @@ NOTE - This project was designed for personal use, make sure to update these val
 1. Place any necessary environment variables into the .env file
 2. freeze python requirements into /server/requirements.txt
 
-In order to correctly deploy with a correct TLS certificate you must do the following:
+In order to correctly deploy with a TLS certificate fo https you must do the following:
 1. Create a type A dns link from subdomain and www.subdomain to node ip address
 2. Run init-letsencrypt.sh to create dummy ssl keys
 3. docker-compose build and docker-compose up
