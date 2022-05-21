@@ -9,6 +9,7 @@ gunicorn = "*"
 django-crontab = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
+celery = "*"
 
 [dev-packages]
 
