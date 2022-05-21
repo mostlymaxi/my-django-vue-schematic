@@ -5,14 +5,32 @@ services:
   server:
     volumes:
       - static:/static
+      - ./server/:/usr/src/app/
     env_file:
       - .env
     build: ./server
-    command: celery worker --app=core --loglevel=info
+    command: gunicorn server.wsgi:application --bind 0.0.0.0:8000
     ports:
       - "8000:8000"
     depends_on:
       - redis
+      - db
+
+  celery:
+    build: ./server
+    command: celery -A core worker -l info
+    volumes:
+      - ./server/:/usr/src/app/
+    depends_on:
+      - server
+
+  celery-beat:
+    build: ./server
+    command: celery -A core beat -l info
+    volumes:
+      - ./server/:/usr/src/app/
+    depends_on:
+      - server
 
   client-nginx:
     build: .
@@ -38,6 +56,14 @@ services:
   redis:
     image: redis:6-alpine
 
+  db:
+    image: postgres:13.0-alpine
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    env_file:
+      - .env.db
+
 volumes:
   static:
+  postgres_data:
 
