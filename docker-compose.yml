@@ -8,10 +8,11 @@ services:
     env_file:
       - .env
     build: ./server
+    command: celery worker --app=core --loglevel=info
     ports:
       - "8000:8000"
-    restart: always
-
+    depends_on:
+      - redis
 
   client-nginx:
     build: .
@@ -24,7 +25,6 @@ services:
     ports:
       - "80:80"
       - "443:443"
-    restart: always
 
   certbot:
     image: certbot/certbot:latest
@@ -34,6 +34,9 @@ services:
     depends_on:
       - server
       - client-nginx
+
+  redis:
+    image: redis:6-alpine
 
 volumes:
   static:
