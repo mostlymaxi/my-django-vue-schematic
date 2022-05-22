@@ -76,5 +76,12 @@ docker-compose run --rm --entrypoint "\
     --force-renewal" certbot
 echo
 
-echo "### Reloading nginx ..."
-docker-compose exec client-nginx nginx -s reload
+# echo "### Reloading nginx ..."
+# docker-compose exec client-nginx nginx -s reload
+
+read -p "Certificate created. Run docker-compose to start web server? (y/N) " decision
+if [ "$decision" != "Y" ] && [ "$decision" != "y" ]; then
+  exit
+fi
+
+docker-compose up --build
