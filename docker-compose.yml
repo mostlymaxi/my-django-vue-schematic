@@ -42,9 +42,8 @@ services:
     volumes:
       - ./client/dist/:/client/dist/
       - static:/static
-      - ./nginx/conf/:/etc/nginx/conf.d/:ro
-      - ./certbot/www:/var/www/certbot/:ro
-      - ./certbot/conf/:/etc/nginx/ssl/:ro
+      - ./data/certbot/letsencrypt:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
     depends_on:
       - server
       - client
@@ -67,8 +66,8 @@ services:
   certbot:
     image: certbot/certbot:latest
     volumes:
-      - ./certbot/www/:/var/www/certbot/:rw
-      - ./certbot/conf/:/etc/letsencrypt/:rw
+      - ./data/certbot/letsencrypt:/etc/letsencrypt
+      - ./data/certbot/www:/var/www/certbot
     depends_on:
       - server
       - client
