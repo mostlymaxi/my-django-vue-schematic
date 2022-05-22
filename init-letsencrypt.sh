@@ -1,11 +1,26 @@
 #!/bin/bash
 
+while getopts m: flag
+do
+    case "${flag}" in
+        m) main_domain=${OPTARG};;
+    esac
+done
+
 if ! [ -x "$(command -v docker-compose)" ]; then
   echo 'Error: docker-compose is not installed.' >&2
   exit 1
 fi
 
-domains=(example.protolemon.com www.example.protolemon.com)
+echo "### if you need to use a domain that is NOT the default [protolemon.com] use the -m flag (-m yourdomain.com)"
+
+read -p "Enter new website subdomain: " subdomain
+if [ -z "$main_domain" ]; then 
+  main_domain=protolemon.com;
+  echo "Entered domain: $main_domain";
+fi
+
+domains=($subdomain.$main_domain www.$subdomain.$main_domain)
 rsa_key_size=4096
 data_path="./certbot"
 email="zogz.max@gmail.com" # Adding a valid address is strongly recommended
@@ -39,7 +54,7 @@ echo
 
 
 echo "### Starting nginx ..."
-docker-compose up --force-recreate -d client-nginx
+docker-compose up --force-recreate -d nginx
 echo
 
 echo "### Deleting dummy certificate for $domains ..."
@@ -76,8 +91,8 @@ docker-compose run --rm --entrypoint "\
     --force-renewal" certbot
 echo
 
-# echo "### Reloading nginx ..."
-# docker-compose exec client-nginx nginx -s reload
+echo "### Reloading nginx ..."
+docker-compose exec nginx nginx -s reload
 
 read -p "Certificate created. Run docker-compose to start web server? (y/N) " decision
 if [ "$decision" != "Y" ] && [ "$decision" != "y" ]; then
