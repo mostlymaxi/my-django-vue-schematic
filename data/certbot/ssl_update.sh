@@ -51,7 +51,7 @@ le_renew() {
     docker run --rm --name temp_certbot \
         -v "${CERT_DIR_PATH}:/etc/letsencrypt" \
         -v "${WEBROOT_PATH}:/tmp/letsencrypt" \
-        -v "./data/servers-data/certbot/log:/var/log" \
+        -v "/($pwd)/data/servers-data/certbot/log:/var/log" \
         certbot/certbot:v1.8.0 certonly --webroot --agree-tos --renew-by-default  \
             --preferred-challenges http-01 \
             --server https://acme-v02.api.letsencrypt.org/directory --text ${ADDITIONAL} \
