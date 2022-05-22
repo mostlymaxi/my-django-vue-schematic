@@ -82,9 +82,15 @@ esac
 # Enable staging mode if needed
 if [ $staging != "0" ]; then staging_arg="--staging"; fi
 
-docker-compose run --rm --entrypoint "\
-  certbot certonly --webroot \
-    --staging -v --email ${email} -w /var/www/certbot" certbot
+docker run --rm --name temp_certbot \
+    -v /data/certbot/letsencrypt:/etc/letsencrypt \
+    -v /data/certbot/www:/tmp/letsencrypt \
+    -v /data/servers-data/certbot/log:/var/log \
+    certbot/certbot:v1.8.0 \
+    certonly --webroot --agree-tos --renew-by-default \
+    --preferred-challenges http-01 --server https://acme-v02.api.letsencrypt.org/directory \
+    --text --email $email \
+    -w /tmp/letsencrypt $domain_args
 echo
 
 echo "### Reloading nginx ..."

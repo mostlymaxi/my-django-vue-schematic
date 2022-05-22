@@ -67,6 +67,7 @@ services:
     image: certbot/certbot:latest
     volumes:
       - ./data/certbot/letsencrypt:/etc/letsencrypt
+      - ./data/certbot/www:/tmp/letsencrypt
       - ./data/certbot/www:/var/www/certbot
     depends_on:
       - server
