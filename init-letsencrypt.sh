@@ -82,13 +82,11 @@ esac
 if [ $staging != "0" ]; then staging_arg="--staging"; fi
 
 docker-compose run --rm --entrypoint "\
-  certbot certonly --webroot -w /var/www \
-    $staging_arg \
-    $email_arg \
-    $domain_args \
+  certbot certonly --webroot --webroot-path /var/www/ \
     --rsa-key-size $rsa_key_size \
     --agree-tos \
-    --force-renewal" certbot
+    --force-renewal \
+    --dry-run" certbot
 echo
 
 echo "### Reloading nginx ..."

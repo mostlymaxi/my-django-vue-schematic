@@ -11,7 +11,7 @@ services:
     build: ./server
     command: gunicorn server.wsgi:application --bind 0.0.0.0:8000
     ports:
-      - 8000:8000
+      - "8000:8000"
     depends_on:
       - redis
       - db
@@ -48,8 +48,8 @@ services:
       - server
       - client
     ports:
-      - 80:80
-      - 443:443
+      - "80:80"
+      - "443:443"
 
   # client-nginx:
   #   build: .
