@@ -15,6 +15,6 @@ COPY ./default.conf /etc/nginx/conf.d/default.conf
 
 RUN mkdir -p /client/dist
 COPY --from=client-stage /client/dist /client/dist
-COPY ./nginx-entrypoint.sh .
+COPY ./nginx-entrypoint.sh ./nginx-entrypoint.sh
 
 ENTRYPOINT [ "./nginx-entrypoint.sh" ]
