@@ -1,9 +1,10 @@
 #!/bin/bash
 
-while getopts m: flag
+while getopts m:s: flag
 do
     case "${flag}" in
         m) main_domain=${OPTARG};;
+        s) stagins="--staging"
     esac
 done
 
@@ -83,9 +84,6 @@ if [ $staging != "0" ]; then staging_arg="--staging"; fi
 
 docker-compose run --rm --entrypoint "\
   certbot certonly --webroot --webroot-path /var/www/ \
-    --rsa-key-size $rsa_key_size \
-    --agree-tos \
-    --force-renewal \
     --dry-run" certbot
 echo
 
