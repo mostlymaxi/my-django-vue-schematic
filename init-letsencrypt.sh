@@ -13,12 +13,12 @@ if ! [ -x "$(command -v docker-compose)" ]; then
 fi
 
 echo "### if you need to use a domain that is NOT the default [protolemon.com] use the -m flag (-m yourdomain.com)"
-
-read -p "Enter new website subdomain: " subdomain
 if [ -z "$main_domain" ]; then 
   main_domain=protolemon.com;
-  echo "Entered domain: $main_domain";
+  echo "Using domain: $main_domain";
 fi
+
+read -p "Enter a new subdomain: " subdomain
 
 domains=($subdomain.$main_domain www.$subdomain.$main_domain)
 rsa_key_size=4096
