@@ -1,2 +1,4 @@
 client/node_modules/
 certbot
+Pipfile
+Pipfile.lock

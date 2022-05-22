@@ -10,7 +10,7 @@ django-crontab = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
 celery = "*"
-psycopg = {extras = ["binary"], version = "*"}
+psycopg2-binary = "*"
 
 [dev-packages]
 

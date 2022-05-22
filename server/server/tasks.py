@@ -1,11 +1,8 @@
+import time
 from .celery import app
 
 
 @app.task
-def add(x, y):
-    return x + y
-
-
-@app.task
-def mul(x, y):
-    return x * y
+def example_task(x):
+    time.sleep(x * .01)
+    return True

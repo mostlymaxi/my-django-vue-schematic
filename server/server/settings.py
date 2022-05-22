@@ -5,6 +5,8 @@ includes: crontabs, rest framework, corsheaders
 
 import os
 from pathlib import Path
+from celery.schedules import crontab
+from . import tasks
 
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -20,6 +22,10 @@ ALLOWED_HOSTS = ['django', '127.0.0.1', 'localhost', 'protolemon.com']
 CORS_ALLOW_HEADERS = ['django', '127.0.0.1', 'localhost', 'protolemon.com']
 
 CRONJOBS = [ ]
+
+CELERY_BEAT_SCHEDULE = {
+    # https://testdriven.io/blog/django-celery-periodic-tasks/
+}
 
 # Celery Settings
 CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
