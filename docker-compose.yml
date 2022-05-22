@@ -42,7 +42,7 @@ services:
     volumes:
       - ./client/dist/:/client/dist/
       - static:/static
-      - ./certbot/www/:/var/www/certbot/
+      - ./certbot/www/:/var/www/
       - ./certbot/conf/:/etc/nginx/ssl/
     depends_on:
       - server
@@ -66,7 +66,7 @@ services:
   certbot:
     image: certbot/certbot:latest
     volumes:
-      - ./certbot/www/:/var/www/certbot/
+      - ./certbot/www/:/var/www/
       - ./certbot/conf/:/etc/letsencrypt/
     depends_on:
       - server
@@ -86,4 +86,5 @@ services:
 volumes:
   static:
   postgres_data:
+  
 
