@@ -23,7 +23,7 @@ read -p "Enter a new subdomain: " subdomain
 
 domains=($subdomain.$main_domain www.$subdomain.$main_domain)
 rsa_key_size=4096
-data_path="./certbot"
+data_path="./data/certbot"
 email="zogz.max@gmail.com" # Adding a valid address is strongly recommended
 staging=0 # Set to 1 if you're testing your setup to avoid hitting request limits
 
