@@ -37,8 +37,10 @@ services:
     volumes:
       - ./client/dist/:/client/dist/
 
-  nginx:
-    build: ./nginx
+  nginx-init:
+    build: 
+      context: ./nginx
+      dockerfile: Dockerfile-init
     volumes:
       - ./client/dist/:/client/dist/
       - static:/static
@@ -51,11 +53,28 @@ services:
       - "80:80"
       - "443:443"
 
+  nginx:
+    build: ./nginx
+    volumes:
+      - ./client/dist/:/client/dist/
+      - static:/static
+      - ./data/certbot/letsencrypt:/etc/letsencrypt
+      - ./data/certbot/www:/var/www
+    depends_on:
+      - server
+      - client
+      - certbot
+    ports:
+      - "80:80"
+      - "443:443"
+
   certbot:
     image: certbot/certbot:latest
     volumes:
       - ./data/certbot/www/:/var/www/certbot/
       - ./data/certbot/letsencrypt/:/etc/letsencrypt/
+    depends_on:
+      - nginx-init
 
   redis:
     image: redis:6-alpine
