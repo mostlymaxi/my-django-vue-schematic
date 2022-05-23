@@ -80,7 +80,7 @@ crontab temp_crontab
 rm temp_crontab
 systemctl status cron
 
-read -p "Initialize docker containers? (y/N) " decision
+read -p "### Initialize docker containers? (y/N) " decision
   if [ "$decision" != "Y" ] && [ "$decision" != "y" ]; then
     exit
   fi
