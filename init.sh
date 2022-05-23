@@ -74,4 +74,11 @@ echo "1 0 * * * docker-compose exec nginx nginx -s reload" >> temp_crontab
 crontab temp_crontab
 rm temp_crontab
 
+read -p "Initialize docker containers? (y/N) " decision
+  if [ "$decision" != "Y" ] && [ "$decision" != "y" ]; then
+    exit
+  fi
+
+docker-compose up --build
+
 exit 0
