@@ -31,6 +31,9 @@ domains="${subdomain}.${domain} www.${subdomain}.${domain}"
 darrays=(${domains})
 d_domains=("${darrays[*]/#/-d }") 
 
+echo "### Updating packages..."
+apt update
+
 echo "### Initializing temporary nginx container..."
 docker build nginx -f nginx/Dockerfile-init -t nginx-temp
 
@@ -56,6 +59,8 @@ echo "### Shutting down temporary nginx container... "
 docker stop nginx-temp
 
 echo "### Writing crontab to auto update certbot... "
+apt install cron
+systemctl enable cron
 crontab -l > temp_crontab
 
 echo "0 0 * * * \
@@ -73,6 +78,7 @@ echo "1 0 * * * docker-compose exec nginx nginx -s reload" >> temp_crontab
 
 crontab temp_crontab
 rm temp_crontab
+systemctl status cron
 
 read -p "Initialize docker containers? (y/N) " decision
   if [ "$decision" != "Y" ] && [ "$decision" != "y" ]; then
