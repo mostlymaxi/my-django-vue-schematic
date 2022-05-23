@@ -1,13 +1,13 @@
 # My Django-Vue Schematic
-Deploying projects in a clean way is one of the most difficult tasks I have ever encountered as a developer... While I don't know how common vue-django stack apps are this may prove to be your life saver.
+Deploying projects in a clean way is one of the most difficult tasks I have ever encountered as a developer... I truly hope that this may save your life (or at least your time).
 
 This repo is specifically designed to be able to build and deploy vue-django projects as quickly and efficiently as possible through docker containers and many hours of painful tests to get https to work on the first deployment.
 
 Simply clone the git repo and then run rm -rf .git to unlink from the repository.
 
-NOTE - This project was designed for personal use, make sure to update these values:
-1. In default.conf -> server name, location /, and ssl certificates
-2. In /server/server/settings.py -> ALLOWED_HOSTS, CORS_ALLOW_HEADERS
+### Hosts and Headers
+NOTE - This project was designed for personal use, make sure to update hosts and headers:
+In /server/server/settings.py -> ALLOWED_HOSTS, CORS_ALLOW_HEADERS
  
 
 ## Testing
@@ -16,11 +16,22 @@ NOTE - This project was designed for personal use, make sure to update these val
 
 
 ## Deploying
-1. Place any necessary environment variables into the .env file
-2. freeze python requirements into /server/requirements.txt
+Deploying will automatically set up an SSL certificate with autorenewal for https! 
 
-In order to correctly deploy with a TLS certificate fo https you must do the following:
-1. Create a type A dns link from subdomain and www.subdomain to node ip address
-2. Run init-letsencrypt.sh to create dummy ssl keys
-3. docker-compose build and docker-compose up
-4. Add automation to certbot to renew the certificates (TODO)
+1. Place any necessary environment variables into the .env file
+2. freeze python requirements into server/requirements.txt
+3. Create a type A dns link from subdomain and www.subdomain to node ip address
+    - This may also be a CNAME dns link depending on your infrastructure.
+4. Go grab a coffee to make sure it's activated
+5. run init.sh and enter your desired subdomain!
+    - WARNING: Leaving the subdomain blank will break everything currently
+
+
+## Even More Batteries Included!
+This is just a list of things I've included in the default project:
+- django rest framework
+- django corsheaders
+- celery
+- celery beat
+- redis (incomplete, needs configuration)
+- postgres (incomplete, needs configuration)
