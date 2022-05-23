@@ -13,6 +13,6 @@ until worker_ready; do
 done
 >&2 echo 'Celery workers is available'
 
-celery -A django_celery_example  \
+celery -A server  \
     --broker="${CELERY_BROKER}" \
     flower
