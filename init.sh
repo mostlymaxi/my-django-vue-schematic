@@ -16,12 +16,12 @@ docker build nginx -f nginx/Dockerfile-init -t nginx-temp
 
 docker run -d --name nginx-temp \
             -v "$pwd/data/certbot/letsencrypt:/etc/letsencrypt" \
-            -v "$pwd/data/certbot/www:/var/www" \
+            -v "certbot_challenges:/var/www" \
             nginx-temp
 
 docker run --rm --name temp_certbot \
     -v "$pwd/data/certbot/letsencrypt:/etc/letsencrypt" \
-    -v "$pwd/data/certbot/www:/var/www" \
+    -v "certbot_challenges:/var/www" \
     certbot/certbot \
     certonly --webroot --agree-tos --renew-by-default \
     --preferred-challenges http-01 --server https://acme-v02.api.letsencrypt.org/directory \
