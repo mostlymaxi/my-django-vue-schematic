@@ -14,7 +14,9 @@ if [ -z "$email" ]; then email="zogz.max@gmail.com"; fi
 
 docker build nginx -f nginx/Dockerfile-init -t nginx-temp
 
-docker run -d --name nginx-temp \
+
+
+docker run --rm -d --name nginx-temp \
             -v "$pwd/data/certbot/letsencrypt:/etc/letsencrypt" \
             -v "certbot_challenges:/var/www/html" \
             -p 80:80 \
@@ -29,3 +31,5 @@ docker run --rm --name temp_certbot \
     --text --email zogz.max@gmail.com \
     --test-cert \
     -w /var/www/html -d example.protolemon.com
+
+docker stop nginx-temp
