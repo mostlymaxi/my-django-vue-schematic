@@ -62,6 +62,7 @@ services:
       - ./env/.env.db
 
 volumes:
+  dist:
   static:
   postgres_data:
   certbot_challenges:
