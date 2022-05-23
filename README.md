@@ -22,8 +22,8 @@ Deploying will automatically set up an SSL certificate with autorenewal for http
 2. freeze python requirements into server/requirements.txt
 3. Create a type A dns link from subdomain and www.subdomain to node ip address
     - This may also be a CNAME dns link depending on your infrastructure.
-4. Go grab a coffee to make sure it's activated
-5. run init.sh and enter your desired subdomain!
+4. Go grab a coffee to make sure dns links are activated!
+5. run init.sh and enter your desired subdomain when prompted
     - WARNING: Leaving the subdomain blank will break everything currently
 
 
