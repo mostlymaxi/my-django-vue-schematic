@@ -7,7 +7,7 @@ Simply clone the git repo and then run rm -rf .git to unlink from the repository
 
 ### Hosts and Headers
 NOTE - This project was designed for personal use, make sure to update hosts and headers:
-In /server/server/settings.py -> ALLOWED_HOSTS, CORS_ALLOW_HEADERS
+- In /server/server/settings.py -> ALLOWED_HOSTS, CORS_ALLOW_HEADERS
  
 
 ## Testing
