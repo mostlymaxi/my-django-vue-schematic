@@ -5,30 +5,46 @@ services:
   server:
     volumes:
       - static:/static
-      - ./server/:/usr/src/app/
+      - ./server/:/app/
     env_file:
       - ./env/.env
     build: ./server
-    command: gunicorn server.wsgi:application --bind 0.0.0.0:8000
+    command: /start
     ports:
       - "8000:8000"
     depends_on:
       - redis
       - db
 
-  celery:
+  celery_worker:
     build: ./server
-    command: celery -A core worker -l info
+    command: /start-celeryworker
     volumes:
-      - ./server/:/usr/src/app/
+      - ./server/:/app/
     depends_on:
       - server
+    env_file:
+      - ./env/.env
 
-  celery-beat:
+  celery_beat:
     build: ./server
-    command: celery -A core beat -l info
+    command: /start-celerybeat
     volumes:
-      - ./server/:/usr/src/app/
+      - ./server/:/app/
+    depends_on:
+      - server
+    env_file:
+      - ./env/.env
+
+  flower:
+    build: ./server
+    command: /start-flower
+    volumes:
+      - ./server/:/app
+    env_file:
+      - ./env/.env
+    ports:
+      - 5555:5555
     depends_on:
       - server
 
