@@ -14,17 +14,15 @@ if [ -z "$email" ]; then email="zogz.max@gmail.com"; fi
 
 docker build nginx -f nginx/Dockerfile-init -t nginx-temp
 
-
-
 docker run --rm -d --name nginx-temp \
-            -v "$pwd/data/certbot/letsencrypt:/etc/letsencrypt" \
-            -v "certbot_challenges:/var/www/html" \
+            -v "$(pwd)"/data/certbot/letsencrypt:/etc/letsencrypt\ \
+            -v certbot_challenges:/var/www/html \
             -p 80:80 \
             nginx-temp
 
 docker run --rm --name temp_certbot \
-    -v "$pwd/data/certbot/letsencrypt:/etc/letsencrypt" \
-    -v "certbot_challenges:/var/www/html" \
+    -v "$(pwd)"/data/certbot/letsencrypt:/etc/letsencrypt \
+    -v certbot_challenges:/var/www/html \
     certbot/certbot \
     certonly --webroot --agree-tos --renew-by-default \
     --preferred-challenges http-01 --server https://acme-v02.api.letsencrypt.org/directory \
