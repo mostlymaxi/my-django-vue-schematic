@@ -24,6 +24,7 @@ Deploying will automatically set up an SSL certificate with autorenewal for http
     - This may also be a CNAME dns link depending on your infrastructure.
 4. Go grab a coffee to make sure dns links are activated!
 5. run init.sh and enter your desired subdomain when prompted
+    - NOTE: I reccomend running 'sudo ./init.sh' to ensure crontab has less difficulties
     - WARNING: Leaving the subdomain blank will break everything currently
 
 
