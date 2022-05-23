@@ -1,8 +1,8 @@
 #!/bin/bash
 
 print_help() {
-  printf "Usage: ./init [-d protolemon.com] [-e email@email.com] [-s] \n"
-  printf "\t -d: main domain name \n\t -e: email for certbot \n\t -s: boolean flag for certbot staging"
+  printf "Usage: ./init [-d protolemon.com] [-e email@email.com] [-s] [-z] \n"
+  printf "\t -d: main domain name \n\t -e: email for certbot \n\t -s: boolean flag for certbot staging \n"
   echo
   exit 1
 }
@@ -22,7 +22,10 @@ do
     esac
 done
 
-read -p "### Enter a new subdomain name: " subdomain  
+read -p "### Enter a new subdomain name: " subdomain
+
+sed "s/example\./${subdomain}./g" ./nginx/templates/default-template.conf > ./nginx/default.conf
+sed "s/example\./${subdomain}./g" ./nginx/templates/init-template.conf > ./nginx/init.conf
 
 domains="${subdomain}.${domain} www.${subdomain}.${domain}"
 darrays=(${domains})
