@@ -35,12 +35,12 @@ services:
   client:
     build: ./client
     volumes:
-      - ./client/dist/:/client/dist/
+      - dist:/client/dist/
 
   nginx:
     build: ./nginx
     volumes:
-      - ./client/dist/:/client/dist/
+      - dist:/client/dist/
       - static:/static
       - ./data/certbot/letsencrypt:/etc/letsencrypt
       - certbot_challenges:/var/www/html
