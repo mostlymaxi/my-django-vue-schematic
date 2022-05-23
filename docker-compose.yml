@@ -7,7 +7,7 @@ services:
       - static:/static
       - ./server/:/usr/src/app/
     env_file:
-      - .env
+      - ./env/.env
     build: ./server
     command: gunicorn server.wsgi:application --bind 0.0.0.0:8000
     ports:
@@ -32,26 +32,24 @@ services:
     depends_on:
       - server
 
-  client-nginx:
-    build: .
+  client:
+    build: ./client
     volumes:
+      - ./client/dist/:/client/dist/
+
+  nginx:
+    build: ./nginx
+    volumes:
+      - ./client/dist/:/client/dist/
       - static:/static
-      - ./certbot/www:/var/www/certbot/
-      - ./certbot/conf/:/etc/nginx/ssl/
+      - ./data/certbot/letsencrypt:/etc/letsencrypt
+      - certbot_challenges:/var/www/html
     depends_on:
       - server
+      - client
     ports:
       - "80:80"
       - "443:443"
-
-  certbot:
-    image: certbot/certbot:latest
-    volumes:
-      - ./certbot/www/:/var/www/certbot/
-      - ./certbot/conf/:/etc/letsencrypt/
-    depends_on:
-      - server
-      - client-nginx
 
   redis:
     image: redis:6-alpine
@@ -61,9 +59,11 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data/
     env_file:
-      - .env.db
+      - ./env/.env.db
 
 volumes:
   static:
   postgres_data:
+  certbot_challenges:
+  
 

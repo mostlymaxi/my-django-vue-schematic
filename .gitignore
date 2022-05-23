@@ -1,4 +1,5 @@
 client/node_modules/
-certbot
+client/dist/
+data/
 Pipfile
 Pipfile.lock
