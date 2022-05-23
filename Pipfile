@@ -11,6 +11,8 @@ djangorestframework = "*"
 django-cors-headers = "*"
 celery = "*"
 psycopg2-binary = "*"
+flower = "*"
+redis = "*"
 
 [dev-packages]
 
