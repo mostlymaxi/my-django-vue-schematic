@@ -17,6 +17,7 @@ docker build nginx -f nginx/Dockerfile-init -t nginx-temp
 docker run -d --name nginx-temp \
             -v "$pwd/data/certbot/letsencrypt:/etc/letsencrypt" \
             -v "certbot_challenges:/var/www/html" \
+            -p 80:80 \
             nginx-temp
 
 docker run --rm --name temp_certbot \
