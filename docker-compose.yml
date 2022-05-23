@@ -47,18 +47,9 @@ services:
     depends_on:
       - server
       - client
-      - certbot
     ports:
       - "80:80"
       - "443:443"
-
-  certbot:
-    image: certbot/certbot:latest
-    volumes:
-      - ./data/certbot/www/:/var/www/certbot/
-      - ./data/certbot/letsencrypt/:/etc/letsencrypt/
-    depends_on:
-      - nginx
 
   redis:
     image: redis:6-alpine
