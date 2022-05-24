@@ -3,6 +3,7 @@ Deploying projects in a clean way is one of the most difficult tasks I have ever
 
 This repo is specifically designed to be able to build and deploy vue-django projects as quickly and efficiently as possible through docker containers and many hours of painful tests to get https to work on the first deployment.
 
+## Getting Started
 - Download the most recent stable release on git or...
 - Simply clone the git repo and then run rm -rf .git to unlink from the repository. Not guaranteed to be stable!
 - Install the dependencies in the base server/requirements.txt to ensure deployment succeeds
@@ -14,8 +15,9 @@ NOTE - This project was designed for personal use, make sure to update hosts and
  
 
 ## Testing
-1. Using a pipenv in the server directory run python manage.py runserver
-2. In the client directory run either vue serve or npm run serve
+1. Install dependencies in server/requirements.txt
+2. run 'python manage.py runserver'
+2. In the client directory run either 'vue serve' or 'npm run serve'
 
 
 ## Deploying
@@ -27,7 +29,7 @@ Deploying will automatically set up an SSL certificate with autorenewal for http
     - This may also be a CNAME dns link depending on your infrastructure.
 4. Go grab a coffee to make sure dns links are activated!
 5. run init.sh and enter your desired subdomain when prompted
-    - NOTE: I reccomend running 'sudo ./init.sh' to ensure crontab has less difficulties
+    - NOTE: I reccomend running 'sudo ./init.sh' to ensure crontab has less trouble with permissions
     - NOTE: In order to change domain run with the "-d my-domain.com" flag
     - WARNING: Leaving the subdomain blank will break everything currently
 
