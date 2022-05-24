@@ -3,7 +3,8 @@ Deploying projects in a clean way is one of the most difficult tasks I have ever
 
 This repo is specifically designed to be able to build and deploy vue-django projects as quickly and efficiently as possible through docker containers and many hours of painful tests to get https to work on the first deployment.
 
-Simply clone the git repo and then run rm -rf .git to unlink from the repository.
+- Simply clone the git repo and then run rm -rf .git to unlink from the repository.
+- Install the dependencies in the base server/requirements.txt to ensure deployment succeeds
 
 ### Hosts and Headers
 NOTE - This project was designed for personal use, make sure to update hosts and headers:
