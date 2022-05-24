@@ -1,7 +1,7 @@
 #!/bin/bash
 
 print_help() {
-  printf "Usage: ./init [-d protolemon.com] [-e email@email.com] [-s] [-z] \n"
+  printf "Usage: ./init [-d protolemon.com] [-e email@email.com] [-s] \n"
   printf "\t -d: main domain name \n\t -e: email for certbot \n\t -s: boolean flag for certbot staging \n"
   echo
   exit 1
