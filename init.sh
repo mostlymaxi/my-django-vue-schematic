@@ -80,6 +80,8 @@ crontab temp_crontab
 rm temp_crontab
 systemctl status cron
 
+export FIRST_INIT="True"
+
 read -p "### Initialize docker containers? (y/N) " decision
   if [ "$decision" != "Y" ] && [ "$decision" != "y" ]; then
     exit
