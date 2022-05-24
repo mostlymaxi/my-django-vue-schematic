@@ -17,11 +17,10 @@ DEBUG = os.getenv('DEBUG', "False") == "True"
 
 ALLOWED_HOSTS = ['django', '127.0.0.1', 'localhost', 'protolemon.com', '.protolemon.com']
 
-# CORS_ORIGIN_ALLOW_ALL = True
-# CORS_ALLOW_CREDENTIALS = True
 CORS_ALLOW_HEADERS = ['django', '127.0.0.1', 'localhost', 'protolemon.com', '.protolemon.com']
 CSRF_TRUSTED_ORIGINS = ['https://*.protolemon.com','https://*.127.0.0.1']
 
+# Soon to be deprecated - Use celery beat instead!
 CRONJOBS = [ ]
 
 CELERY_BEAT_SCHEDULE = {

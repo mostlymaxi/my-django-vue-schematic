@@ -8,7 +8,8 @@ This repo is specifically designed to be able to build and deploy vue-django pro
 
 ### Hosts and Headers
 NOTE - This project was designed for personal use, make sure to update hosts and headers:
-- In /server/server/settings.py -> ALLOWED_HOSTS, CORS_ALLOW_HEADERS
+- In /server/server/settings.py -> ALLOWED_HOSTS, CORS_ALLOW_HEADERS, CSRF_TRUSTED_ORIGINS
+- see section: Security for more details on deploying safely
  
 
 ## Testing
@@ -28,6 +29,14 @@ Deploying will automatically set up an SSL certificate with autorenewal for http
     - NOTE: I reccomend running 'sudo ./init.sh' to ensure crontab has less difficulties
     - NOTE: In order to change domain run with the "-d my-domain.com" flag
     - WARNING: Leaving the subdomain blank will break everything currently
+
+## Security
+- Check server/server/settings.py file
+    - Set ALLOWED_HOSTS, CORS_ALLOW_HEADERS, CSRF_TRUSTED_ORIGINS to match your domain
+- Check env/.env environment variables
+    - Set DEBUG in env/.env to False
+    - Generate a new SECRET_KEY for django
+    - Set a DJANGO_SUPERUSER_USER, DJANGO_SUPERUSER_PASSWORD, and DJANGO_SUPERUSER_EMAIL
 
 
 ## Even More Batteries Included!
