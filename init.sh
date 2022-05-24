@@ -85,7 +85,7 @@ read -p "### Initialize docker containers? (y/N) " decision
     exit
   fi
 
-docker-compose up --build
+docker-compose up --build --detach
 
 read -p "### Create django superuser? (y/N) " decision
 if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
