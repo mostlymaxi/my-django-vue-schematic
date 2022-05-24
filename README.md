@@ -1,7 +1,9 @@
 # My Django-Vue Schematic
 Deploying projects in a clean way is one of the most difficult tasks I have ever encountered as a developer... I truly hope that this may save your life (or at least your time).
 
-This repo is specifically designed to be able to build and deploy vue-django projects as quickly and efficiently as possible through docker containers and many hours of painful tests to get https to work on the first deployment.
+This repo is specifically designed to be able to build and deploy vue-django projects as quickly and efficiently as possible through docker containers. 
+
+This is mostly intended to run vue-django projects on individual servers or nodes, if you need to scale a big project it is much better to build the front and backend seperately and use a service like Heroku to deploy. It'll give you access to their CDN for your static vue page and easy deployment for your django app.
 
 ## Getting Started
 - Download the most recent stable release on git or...
