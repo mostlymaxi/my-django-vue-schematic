@@ -7,9 +7,4 @@ set -o nounset
 python manage.py migrate --no-input
 python manage.py collectstatic --no-input
 
-read -p "### Create django superuser? (y/N) " decision
-if [ "$decision" == "Y" ] || [ "$decision" == "y" ]; then
-    python manage.py createsuperuser
-fi
-
 gunicorn server.wsgi:application --bind 0.0.0.0:8000
