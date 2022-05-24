@@ -23,7 +23,7 @@ NOTE - This project was designed for personal use, make sure to update hosts and
 ## Deploying
 Deploying will automatically set up an SSL certificate with autorenewal for https! 
 
-1. Place any necessary environment variables into the .env file
+1. Place any necessary environment variables into the .env file (See Security section)
 2. freeze python requirements into server/requirements.txt
 3. Create a type A dns link from subdomain and www.subdomain to node ip address
     - This may also be a CNAME dns link depending on your infrastructure.
