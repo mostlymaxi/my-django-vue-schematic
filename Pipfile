@@ -6,7 +6,6 @@ name = "pypi"
 [packages]
 django = "*"
 gunicorn = "*"
-django-crontab = "*"
 djangorestframework = "*"
 django-cors-headers = "*"
 celery = "*"

@@ -20,17 +20,6 @@ ALLOWED_HOSTS = ['django', '127.0.0.1', 'localhost', 'protolemon.com', '.protole
 CORS_ALLOW_HEADERS = ['django', '127.0.0.1', 'localhost', 'protolemon.com', '.protolemon.com']
 CSRF_TRUSTED_ORIGINS = ['https://*.protolemon.com','https://*.127.0.0.1']
 
-# Soon to be deprecated - Use celery beat instead!
-CRONJOBS = [ ]
-
-CELERY_BEAT_SCHEDULE = {
-    # https://testdriven.io/blog/django-celery-periodic-tasks/
-}
-
-# Celery Settings
-CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
-CELERY_RESULT_BACKEND = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
-
 INSTALLED_APPS = [
     'django.contrib.admin',
     'django.contrib.auth',
@@ -38,7 +27,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_crontab',
     'rest_framework',
     'corsheaders',
 ]
@@ -88,6 +76,14 @@ DATABASES = {
         "PORT": os.environ.get("SQL_PORT", "5432"),
     }
 }
+
+CELERY_BEAT_SCHEDULE = {
+    # https://testdriven.io/blog/django-celery-periodic-tasks/
+}
+
+# Celery Settings
+CELERY_BROKER_URL = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
+CELERY_RESULT_BACKEND = os.environ.get("CELERY_BROKER", "redis://redis:6379/0")
 
 
 # Password validation
