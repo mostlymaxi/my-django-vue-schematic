@@ -123,12 +123,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
 STATIC_ROOT = '/static/'
-STATIC_CLIENT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = [
-    STATIC_CLIENT,
-]
+"""
+Use this if you need to serve static files from something else (vue)
+"""
+# STATIC_CLIENT = os.path.join(os.path.dirname(BASE_DIR), 'static')
+# STATICFILES_DIRS = [
+#     STATIC_CLIENT,
+# ]
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
