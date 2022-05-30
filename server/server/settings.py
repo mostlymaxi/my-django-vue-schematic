@@ -19,7 +19,8 @@ if (DEBUG): print("\033[93m DEBUG ENABLED \033[0m")
 ALLOWED_HOSTS = ['django', '127.0.0.1', 'localhost', 'protolemon.com', '.protolemon.com']
 
 CORS_ALLOW_HEADERS = ['django', '127.0.0.1', 'localhost', 'protolemon.com', '.protolemon.com']
-CSRF_TRUSTED_ORIGINS = ['https://*.protolemon.com','https://*.127.0.0.1']
+CORS_ORIGIN_WHITELIST = ['http://localhost:8080']
+CSRF_TRUSTED_ORIGINS = ['https://*.protolemon.com','https://*.127.0.0.1', 'http://localhost:8080']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
