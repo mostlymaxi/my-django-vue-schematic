@@ -3,3 +3,4 @@ client/dist/
 data/
 Pipfile
 Pipfile.lock
+env/
